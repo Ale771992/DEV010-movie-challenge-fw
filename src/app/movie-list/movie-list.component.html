@@ -1,0 +1,16 @@
+<body>
+    <section class="controls">
+        <button (click)="goToPreviousPage()">Previous Page</button>
+        <button (click)="goToNextPage()">Next Page </button>
+
+    </section>
+    <ul>
+            <div class="movie-card">
+                <li *ngFor="let item of allMovies">
+                <img src="https://image.tmdb.org/t/p/w500{{ item.poster_path }}" alt="{{ item.title }} Poster">
+                <h2>{{ item.title }}</h2>
+                <h3>{{ item.release_date | date:'dd/MM/yyyy' }}</h3>
+            </li>
+            </div>
+    </ul>
+</body>
