@@ -1,0 +1,18 @@
+.controls{
+    margin-bottom: 100px;
+    margin-left: 950px;
+}
+button {
+    background-color: #D9D9D9;
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+    margin: 5px;
+    border: #F20505 solid 3px;
+    border-radius: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+.PageOf{
+    font-family: "Anton", sans-serif;
+  }
