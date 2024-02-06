@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+.encabezado{
+    height: 200px;
+    background: url("../assets/Images/header_background.jpg");
+    background-size: 100% 100%;
+    display: flex;
+    color: white;
+    font-family:'Anton', sans-serif; 
+    font-size: 50px;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,17 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { MovieService } from "../services/movie.service";
-import {Movie, Genre} from "../movie.interface"
+import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrl: './home.component.css'
 })
-export class HomeComponent  implements OnInit{
-    title = 'movie-challengeSci'
-    allMovies: Movie[] = []
-
-    ngOnInit() {
-        
-    }
+export class HomeComponent {
+    
 }

@@ -8,6 +8,7 @@ export interface MovieResponse { // Es la estructura de la respuesta que contien
     // en la propiedad results 
     results: Movie[];
     page: number
+    totalPages: 42002
 }
 export interface Genre {
     id: number

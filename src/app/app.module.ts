@@ -10,19 +10,23 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieService } from './services/movie.service';
 import { GenreService } from './services/genre.service';
 import { FilterMovieComponent } from './filter/filter-movie.component';
-import { HomeComponent } from './home/home.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({ //La "Ng" representa "Angular"
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [ // Define los componentes que pertenecen a este modulo. 
-        AppComponent, 
+        AppComponent,
         HomeComponent,
+        FilterMovieComponent,
         PaginationComponent,
         MovieListComponent,
-        FilterMovieComponent,
+        HeaderComponent,
+        
     ],
+
     imports: [ // Otros modulos que este modulo necesita para funcionar
         BrowserModule,
         HttpClientModule,

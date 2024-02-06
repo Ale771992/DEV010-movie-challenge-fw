@@ -3,19 +3,23 @@ import { HttpClient, HttpParams } from "@angular/common/http"; // Modulo con fun
 import { Observable } from "rxjs"; // Observable maneja y observa los eventos asincronos de la solicitud(es) HTTP
 import { map } from "rxjs/operators";
 import { Movie, MovieResponse } from "../movie.interface";
+
 @Injectable({
     providedIn: 'root' // Le indicas a Angular que traiga el servicio de manera global en toda la aplicación 
 })
 export class MovieService { // Injectable convierte a MovieService es un servicio injectable, para poder usarlo en otros componentes
+   
     constructor(private http: HttpClient) { } // El constructor inicializa el servicio de MovieService
     
+    itemsPerPage = 20;
+    totalPages = 42002
     currentPage = 1
     nextPage = new EventEmitter<number>()
     previousPage = new EventEmitter<number>()
     
     // Metodo GetMovies 
     getMovies(page: number): Observable<MovieResponse> { // Método getMovies
-        console.log(page)
+        // console.log(page)
         this.currentPage = 1
         // Mi llave API
         const apiKey = 'ad22179806a32645da3db8a592f0af57'

@@ -1,19 +1,19 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home/home.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FilterMovieComponent } from './filter/filter-movie.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-    {
-        path: '', component: HomeComponent,
-        children: [
+        {path: '', redirectTo: '/home', pathMatch: 'full'},
+        {path: 'home', component: HomeComponent},
         {path: 'movieList', component: MovieListComponent},
         {path: 'pagination', component: PaginationComponent },
-        ]
-    },
-    { path: 'filter', component: FilterMovieComponent }
+        {path: 'filter', component: FilterMovieComponent }
+        
+    ,
 
 ]
 @NgModule({
