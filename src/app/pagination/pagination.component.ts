@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output} from "@angular/core"; //Output
+import { Component, OnInit, EventEmitter, Output } from "@angular/core"; //Output
 import { MovieService } from "../services/movie.service";
 import { Movie } from "../movie.interface";
 
@@ -20,12 +20,16 @@ export class PaginationComponent implements OnInit {
 
     constructor(private movieService: MovieService) { }
     ngOnInit() {
+        console.log('Initializing PaginationComponent');
         this.getMovies(this.currentPage)
+        this.goToNextPage()
+        this.goToPreviousPage()
     }
     getMovies(page: number) {
         // Llamas al servicio para obtener las pelis de la pagina actual
         this.movieService.getMovies(page).subscribe((resp) => {
             if (resp) {
+                // this.totalPages = resp.totalPages
                 this.movieService.totalPages = Math.ceil(resp.results.length / this.movieService.itemsPerPage)
             }
         })
@@ -35,21 +39,20 @@ export class PaginationComponent implements OnInit {
 
         if (this.currentPage < totalPages) {
             this.currentPage++
-            this.getMovies(this.currentPage)
-            this.nextPage.emit(this.currentPage)
-        } else {
-            this.currentPage++;
-            this.getMovies(this.currentPage)
+            // this.getMovies(this.currentPage)
+        }  else {
+             // this.currentPage++;
+            // this.getMovies(this.currentPage)
         }
-        // this.nextPage.emit(this.currentPage)
+        this.movieService.nextPage.emit(this.currentPage)
+        // this.getMovies(this.currentPage)
     }
 
     goToPreviousPage() {
         if (this.currentPage > 1) {
             this.currentPage--;
-            this.getMovies(this.currentPage)
         }
-        this.previousPage.emit(this.currentPage)
+        this.movieService.previousPage.emit(this.currentPage)
 
     }
 }

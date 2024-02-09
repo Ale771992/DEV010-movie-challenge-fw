@@ -5,78 +5,57 @@ import { Movie } from "../movie.interface";
 @Component({
     selector: 'app-movie-list',
     templateUrl: './movie-list.component.html',
-    styleUrl: './movie-list.component.css'
+    styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {// OnInit es un ciclo de vida del componente, se ejecuta una vez que el componente ha sido inicializado. 
-
-    // inicialización de la variable
-    movie: Movie = {
-        title: "Título de la película",
-        release_date: 2021,
-        poster_path: "/ruta/imagen.jpg"
-    };
+// Class = clase de componente. Dentro de esta clase, se definen métodos y propiedades relacionados con el componente.
+export class MovieListComponent implements OnInit {
+    // inicialización de las variables
+   
     currentPage = 1
     itemsPerPage = 20;
     movies: Movie[] = []
 
-    constructor(private movieService: MovieService) { }
+     // El constructor se usa para inyectar una instancia del servicio. 
+    constructor(private movieService: MovieService) { } // La inyección de dependecias es una tecnica de Angular donde las dependecias se pasan como argumentos al constructor
 
     ngOnInit() {
-        
+        console.log('Initializing MovieListComponent');
+        this.getMovies() // this. se usa para hacer referencia a la instancia actual del objeto o clase.
         // Me suscribo a los eventos del paginador
         this.movieService.nextPage.subscribe(() => {
-           this.currentPage = this.movieService.currentPage
-           this.getMovies()
+            console.log('Next page event received');
+           this.goToNextPage()
+           
         })
         this.movieService.previousPage.subscribe(() => {
-            this.currentPage = this.movieService.currentPage
-            this.getMovies()
+            console.log('Previous page event received');
+            this.goToPreviousPage()
         })
-        this.getMovies()
     }
     getMovies(){
-        const currentPage = this.movieService.currentPage
-        const itemsPerPage = this.movieService.itemsPerPage
-        //Llamo al servicio para obtener las peliculas de la pagina actual
-        this.movieService.getMovies(currentPage).subscribe((resp) =>{
+       // const currentPage = this.movieService.currentPage
+        // Llamo al servicio para obtener las peliculas de la pagina actual
+        this.movieService.getMovies(this.currentPage).subscribe((resp) =>{
+            console.log("Pelis", resp)
             if(resp){
                 this.movies = resp.results
+                this.movieService.totalPages = Math.ceil(resp.results.length / this.movieService.itemsPerPage)
                 console.log("Todas las pelis", this.movies)
             }
         })
     }
-    
-    
-    
-    
-    /* getMovies(page: number = this.currentPage) {
-        this.movieService.getMovies(page).subscribe((resp) => {
-            console.log("This is the value of resp", resp);
-            if (resp) {
-                this.allMovies = resp.results
-                console.log('After calling getmovies:', this.allMovies.length);
-                this.currentPage = resp.page
-            }
-        });
-    } */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /* goToNextPage() {
+    // Eventos del paginador
+    goToNextPage(){
+        console.log('Going to next page');
         this.currentPage++
-        this.getMovies(this.currentPage)
+        this.getMovies()
     }
-    goToPreviousPage() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
-            this.getMovies(this.currentPage);
+    goToPreviousPage(){
+        console.log('Going to previous page');
+        if(this.currentPage > 1){
+            this.currentPage--
+            this.getMovies()
         }
-    } */
+    }
 
 }
